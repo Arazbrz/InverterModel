@@ -1,0 +1,171 @@
+function Plottransfer(Out1,t,X)
+for p=1:length(X) 
+f1=figure
+sgtitle({'Step Response: '; Out1.name})
+subplot(2,2,1)
+try
+      step(Out1.Z.dd)
+catch
+    plot(1:100,1:100)
+end
+hold on 
+try
+step(Out1.Y.dd)
+catch
+    plot(1:100,1:100)
+end
+legend('Impedance' , 'Admittance')
+title('Ydd')
+subplot(2,2,2)
+try
+step(Out1.Z.dq)
+catch
+    plot(1:100,1:100)
+end
+
+hold on
+try
+step(Out1.Y.dq,t)
+catch
+    plot(1:100,1:100)
+end
+legend('Impedance' , 'Admittance')
+title('Yqd')
+subplot(2,2,3)
+try
+step(Out1.Z.qd,t)
+catch
+    plot(1:100,1:100)
+end
+hold on
+try
+step(Out1.Y.qd,t)
+catch
+    plot(1:100,1:100)
+end
+legend('Impedance' , 'Admittance')
+title('Ydq')
+subplot(2,2,4)
+try
+step(Out1.Z.qq,t)
+catch
+    plot(1:100,1:100)
+end
+hold on 
+try
+step(Out1.Y.qq,t)
+catch
+    plot(1:100,1:100)
+end
+legend('Impedance' , 'Admittance')
+title('Yqq')
+saveas(f1,['step' Out1.name '.emf'])
+saveas(f1,['step' Out1.name '.jpeg'])
+savefig(f1,['step' Out1.name])
+end
+%%
+f2=figure
+sgtitle({'Impulse Response '; Out1.name})
+subplot(2,2,1)
+try
+impulse(Out1.Z.dd)
+catch
+    plot(1:100,1:100)
+end
+hold on 
+try
+impulse(Out1.Y.dd)
+catch
+    plot(1:100,1:100)
+end
+legend('Impedance' , 'Admittance')
+title('Ydd')
+subplot(2,2,2)
+try
+impulse(Out1.dq)
+catch
+    plot(1:100,1:100)
+end
+title('Yqd')
+subplot(2,2,3)
+impulse(Out1.dq)
+title('Ydq')
+subplot(2,2,4)
+impulse(Out1.qq)
+title('Yqq')
+saveas(f2,['impulse' Out1.name '.emf'])
+saveas(f2,['impulse' Out1.name '.jpeg'])
+savefig(f2,['impulse' Out1.name])
+%%
+f3=figure
+sgtitle({'Nyquist '; Out1.name})
+subplot(2,2,1)
+nyquist(Out1.dd)
+title('Ydd')
+subplot(2,2,2)
+nyquist(Out1.dq)
+title('Yqd')
+subplot(2,2,3)
+nyquist(Out1.dq)
+title('Ydq')
+subplot(2,2,4)
+nyquist(Out1.qq)
+title('Yqq')	
+saveas(f3,['nyquist' Out1.name '.emf'])
+saveas(f3,['nyquist' Out1.name '.jpeg'])
+savefig(f3,['nyquist' Out1.name])
+%%
+f4=figure
+sgtitle({'Nichols '; Out1.name})
+subplot(2,2,1)
+nichols(Out1.dd)
+title('Ydd')
+subplot(2,2,2)
+nichols(Out1.dq)
+title('Yqd')
+subplot(2,2,3)
+nichols(Out1.qd)
+title('Ydq')
+subplot(2,2,4)
+nichols(Out1.qq)
+title('Yqq')
+saveas(f4,['Nichols' Out1.name '.emf'])
+saveas(f4,['Nichols' Out1.name '.jpeg'])
+savefig(f4,['Nichols' Out1.name])
+%%
+f5=figure
+sgtitle({'Root Locus '; Out1.name})
+subplot(2,2,1)
+rlocus(Out1.dd)
+title('Ydd')
+subplot(2,2,2)
+rlocus(Out1.dq)
+title('Yqd')
+subplot(2,2,3)
+rlocus(Out1.qd)
+title('Ydq')
+subplot(2,2,4)
+rlocus(Out1.qq)
+title('Yqq')
+saveas(f5,['rlocus' Out1.name '.emf'])
+saveas(f5,['rlocus' Out1.name '.jpeg'])
+savefig(f5,['rlocus' Out1.name])
+%%
+f6=figure
+sgtitle({'Bode '; Out1.name})
+subplot(2,2,1)
+bode(Out1.dd)
+title('Ydd')
+subplot(2,2,2)
+bode(Out1.dq)
+title('Yqd')
+subplot(2,2,3)
+bode(Out1.qd)
+title('Ydq')
+subplot(2,2,4)
+bode(Out1.qq)
+title('Yqq')
+saveas(f6,['bode' Out1.name '.emf'])
+saveas(f6,['bode' Out1.name '.jpeg'])
+savefig(f6,['bode' Out1.name])
+end
